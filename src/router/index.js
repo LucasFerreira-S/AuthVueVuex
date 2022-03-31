@@ -4,8 +4,13 @@ import Gerentes from '../views/Gerentes.vue'
 import Home from '../views/Home.vue'
 import NovoUsuario from '../views/NovoUsuario.vue'
 import Login from '../views/Login.vue'
-Vue.use(VueRouter)
+import http from '@/http'
 
+
+Vue.use(VueRouter)
+Vue.config.productionTip = false
+
+Vue.prototype.$http = http
 const routes = [
   {
     path: '',
