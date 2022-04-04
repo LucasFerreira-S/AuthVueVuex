@@ -5,42 +5,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto" v-if="usuarioestaLogado">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/gerentes" class="nav-link">
-              Gerentes
-            </router-link>
-          </li>
-          <li class="nav-item">
-             <a
-              href="#"
-              class="nav-link"
-              @click.prevent="efetuarLogout">Logout</a>
-          </li> 
-        </ul>
-        <ul class="navbar-nav mr-auto" v-else>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/login">Login</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/cadastre-se" class="nav-link">
-              Registre-se
-            </router-link>
-          </li>
-        </ul>
+        <BarraNavegacaoQuandoLogado v-if="usuarioestaLogado"/>
+        <BarraNavegacaoQuandoDeslogado v-else/>
       </div>
     </nav>
 </template>
 <script>
+import BarraNavegacaoQuandoLogado from './BarraNevegacaoQuandoLogado.vue'
+import BarraNavegacaoQuandoDeslogado from './BarraNavegacaoDeslogado.vue'
 export default {
-  methods: {
-    efetuarLogout(){
-      localStorage.removeItem('token')
-      this.$router.push({name: 'login'})
-    }
+  components:{
+    BarraNavegacaoQuandoLogado,
+    BarraNavegacaoQuandoDeslogado
   },
   computed: {
     usuarioestaLogado(){
